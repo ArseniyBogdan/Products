@@ -80,4 +80,13 @@ dependencies {
     // features for fragments
     implementation("androidx.activity:activity-ktx:1.7.2")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
+
+    //Shimmer
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+
+    // SwipeRefreshLayout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

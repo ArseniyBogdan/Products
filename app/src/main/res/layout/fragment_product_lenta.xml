@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <com.google.android.material.search.SearchBar
+        android:id="@+id/lenta_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+
+    </com.google.android.material.search.SearchBar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_not_founded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/products_not_founded"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.airbnb.epoxy.EpoxyRecyclerView
+                android:id="@+id/lenta_epoxy_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:orientation="vertical"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="6dp"
+                app:itemSpacing="6dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:itemCount="8"
+                tools:listitem="@layout/fragment_product_lenta"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </FrameLayout>
+</LinearLayout>

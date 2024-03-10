@@ -1,7 +1,7 @@
 package com.example.products.utils
 
 import com.example.products.entities.response.PageOfProductsResponse
-import com.example.products.memmory.ProductStorage
+import com.example.products.memory.ProductStorage
 
 object ProductStorageUtil {
 

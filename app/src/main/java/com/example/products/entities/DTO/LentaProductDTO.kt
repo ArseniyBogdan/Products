@@ -4,7 +4,7 @@ data class LentaProductDTO(
     val id: Int,
     val title: String,
     val description: String,
-    val price: Double,
+    val price: Int,
     val discountPercentage: Double,
     val rating: Double,
     val stock: Int,

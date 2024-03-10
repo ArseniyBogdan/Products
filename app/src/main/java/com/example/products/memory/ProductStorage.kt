@@ -1,4 +1,4 @@
-package com.example.products.memmory
+package com.example.products.memory
 
 import com.example.products.entities.response.ProductResponse
 
