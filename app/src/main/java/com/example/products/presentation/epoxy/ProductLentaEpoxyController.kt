@@ -2,7 +2,7 @@ package com.example.products.presentation.epoxy
 
 import android.content.Context
 import com.airbnb.epoxy.TypedEpoxyController
-import com.example.products.entities.dto.LentaProductDTO
+import com.example.products.entities.DTO.LentaProductDTO
 import java.util.UUID
 
 class ProductLentaEpoxyController(

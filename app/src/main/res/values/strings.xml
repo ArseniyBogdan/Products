@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Products</string>
     <string name="products_not_founded">Товар не найден</string>
+    <string name="remained">Осталось</string>
+    <string name="pieces_left">шт</string>
+    <string name="dollar">$</string>
+    <string name="minus">-</string>
+    <string name="percent">%</string>
 </resources>

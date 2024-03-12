@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.products.R
 import com.example.products.databinding.ProductListItemBinding
-import com.example.products.entities.dto.LentaProductDTO
+import com.example.products.entities.DTO.LentaProductDTO
 import com.example.products.utils.ViewBindingKotlinModel
 import kotlin.math.roundToInt
 
@@ -26,11 +26,18 @@ class ProductLentaEpoxyModel(
 
         lentaProduct?.let { product ->
             shimmer.stopShimmer()
-            val priceText = product.price.toString() + " $"
-            val discountText = "-" + product.discountPercentage.roundToInt().toString() + "%"
+            val priceText = product.price.toString() + " " + context.resources.getString(R.string.dollar)
+
+            val discountText = context.resources.getString(R.string.minus) +
+                    product.discountPercentage.roundToInt().toString() + context.resources.getString(R.string.percent)
+
             val priceWithDiscountText = (product.price * (1 - product.discountPercentage / 100))
-                .roundToInt().toString() + " $"
-            val stockText = "Осталось " + product.stock.toString() + " шт"
+                .roundToInt().toString() + " " + context.resources.getString(R.string.dollar)
+
+            val stockText = context.resources.getString(R.string.remained) + " " +
+                    product.stock.toString() + " " + context.resources.getString(R.string.pieces_left)
+
+
 
             productTitle.text = product.title
             productPrice.text = priceText

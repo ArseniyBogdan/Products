@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.products.entities.dto.LentaPageOfProductsDTO
-import com.example.products.entities.dto.LentaProductDTO
+import com.example.products.entities.DTO.LentaPageOfProductsDTO
+import com.example.products.entities.DTO.LentaProductDTO
 import com.example.products.usecases.GetPageOfProductsByKeyUseCase
 import com.example.products.usecases.GetPageOfProductsUseCase
 import kotlinx.coroutines.Dispatchers
@@ -53,7 +53,6 @@ class ProductViewModel: ViewModel() {
     // метод для обновления ленты товаров
     // (нужен в случае появления интернета на устройстве)
     fun refresh(searchKey: String){
-        Log.d("searchKey", searchKey)
         isLoading = true
         _isRefreshing.value = true
         _isFounded.postValue(true)
@@ -74,7 +73,6 @@ class ProductViewModel: ViewModel() {
     // метод для загрузки первой страницы товаров
     // при изменении поискового запроса пользователем
     fun search(searchKey: String){
-        Log.d("search", searchKey)
         isLoading = true
         _isFounded.postValue(true)
         _products.value = mutableListOf()
@@ -144,7 +142,6 @@ class ProductViewModel: ViewModel() {
 
     // метод для загрузки товаров при скроллинге
     fun download(searchKey: String){
-        Log.d("download", searchKey)
         isLoading = true
         viewModelScope.launch(Dispatchers.IO) {
             val pageOfProducts = downloadNewPage(

@@ -1,4 +1,4 @@
-package com.example.products.entities.dto
+package com.example.products.entities.DTO
 
 /**
  *

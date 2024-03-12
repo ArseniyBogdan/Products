@@ -1,7 +1,7 @@
 package com.example.products.usecases
 
 import android.util.Log
-import com.example.products.entities.dto.LentaPageOfProductsDTO
+import com.example.products.entities.DTO.LentaPageOfProductsDTO
 import com.example.products.services.ProductService
 import com.example.products.utils.toLentaPageOfProductsDTO
 

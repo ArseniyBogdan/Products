@@ -1,7 +1,7 @@
 package com.example.products.utils
 
-import com.example.products.entities.dto.LentaPageOfProductsDTO
-import com.example.products.entities.dto.LentaProductDTO
+import com.example.products.entities.DTO.LentaPageOfProductsDTO
+import com.example.products.entities.DTO.LentaProductDTO
 import com.example.products.entities.response.PageOfProductsResponse
 import com.example.products.entities.response.ProductResponse
 
