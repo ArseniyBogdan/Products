@@ -53,17 +53,18 @@ class ProductViewModel: ViewModel() {
     fun shouldPaginate() = !isLastPage && !isLoading
 
     fun refresh(searchKey: String){
+        Log.d("searchKey", searchKey)
         isLoading = true
         _isRefreshing.value = true
         _isFounded.postValue(true)
         _products.value = mutableListOf()
-        currentPage = 0
         viewModelScope.coroutineContext.cancelChildren()
         viewModelScope.launch(Dispatchers.IO) {
             val pageOfProducts = downloadNewPage(
                 searchKey = searchKey,
-                pageSelected = currentPage
+                pageSelected = 0
             )
+            currentPage = 1
             setNewPage(pageOfProducts)
             _isRefreshing.postValue(false)
             isLoading = false
@@ -71,15 +72,17 @@ class ProductViewModel: ViewModel() {
     }
 
     fun search(searchKey: String){
+        Log.d("search", searchKey)
         isLoading = true
-        currentPage = 0
+        _isFounded.postValue(true)
         _products.value = mutableListOf()
         viewModelScope.coroutineContext.cancelChildren()
         viewModelScope.launch(Dispatchers.IO) {
             val pageOfProducts = downloadNewPage(
                 searchKey = searchKey,
-                pageSelected = currentPage
+                pageSelected = 0
             )
+            currentPage = 1
             setNewPage(pageOfProducts)
             isLoading = false
         }
@@ -105,7 +108,7 @@ class ProductViewModel: ViewModel() {
                 )
             }
         }catch (e: Exception){
-            Log.d("ProductViewModel.download", "Can't download page")
+            Log.e("ProductViewModel.download", "Can't download page. message: ${e.message}")
             null
         }
     }
@@ -128,7 +131,6 @@ class ProductViewModel: ViewModel() {
             _isFounded.postValue(false)
         }
         isLastPage = productPage?.isLastPage ?: true
-        currentPage++
         if(productPage != null && productPage.products.isNotEmpty()){
             _isFounded.postValue(true)
             _products.postValue(productPage.products.toMutableList())
@@ -136,6 +138,7 @@ class ProductViewModel: ViewModel() {
     }
 
     fun download(searchKey: String){
+        Log.d("download", searchKey)
         isLoading = true
         viewModelScope.launch(Dispatchers.IO) {
             val pageOfProducts = downloadNewPage(
