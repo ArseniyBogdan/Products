@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.viewbinding.library.fragment.viewBinding
 import android.widget.AbsListView
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.products.databinding.FragmentProductLentaBinding
 import com.example.products.presentation.epoxy.ProductLentaEpoxyController
+import java.util.Locale
 
 class ProductFragment: Fragment() {
     private var _binding: FragmentProductLentaBinding? = null
@@ -36,6 +38,7 @@ class ProductFragment: Fragment() {
         Log.d("Hmm", "I'm in")
         initEpoxyRV()
         observeViewModel()
+        setupSearchBar()
     }
 
     private fun initEpoxyRV(){
@@ -61,7 +64,7 @@ class ProductFragment: Fragment() {
 
                     val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount - 4
                     if(isAtLastItem && isScrolling && viewModel.shouldPaginate()){
-                        viewModel.download()
+                        viewModel.download(searchKey = binding.lentaSearchbar.query.toString())
                         isScrolling = false
                     }
                 }
@@ -87,7 +90,23 @@ class ProductFragment: Fragment() {
             binding.refreshLayout.isRefreshing = it
         }
         binding.refreshLayout.setOnRefreshListener {
-            viewModel.refresh()
+            viewModel.refresh(searchKey = binding.lentaSearchbar.query.toString())
         }
+    }
+
+    private fun setupSearchBar(){
+        binding.lentaSearchbar.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.lentaSearchbar.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val searchText = newText!!.lowercase(Locale.getDefault())
+                viewModel.search(searchText)
+                binding.lentaEpoxyRv.adapter = binding.lentaEpoxyRv.adapter
+                return true
+            }
+        })
     }
 }
