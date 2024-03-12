@@ -1,6 +1,8 @@
 package com.example.products.utils
 
+import com.example.products.entities.DTO.LentaPageOfProductsDTO
 import com.example.products.entities.DTO.LentaProductDTO
+import com.example.products.entities.response.PageOfProductsResponse
 import com.example.products.entities.response.ProductResponse
 
 internal fun ProductResponse.toLentaProductDTO() =
@@ -15,4 +17,10 @@ internal fun ProductResponse.toLentaProductDTO() =
         brand = brand,
         category = category,
         thumbnail = thumbnail
+    )
+
+internal fun PageOfProductsResponse.toLentaPageOfProductsDTO() =
+    LentaPageOfProductsDTO(
+        products = products.map { it.toLentaProductDTO() },
+        isLastPage = total <= limit + skip
     )

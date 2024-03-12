@@ -15,9 +15,11 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/lenta_product_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:animateLayoutChanges="true">
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/product_thumbnail"
                 android:layout_width="match_parent"
@@ -78,14 +80,13 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp">
+                android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginEnd="6dp">
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/favorite_button"
                         android:layout_width="20dp"
@@ -116,10 +117,36 @@
                     android:layout_marginStart="6dp"
                     android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:layout_marginEnd="6dp"
                     tools:text="iPhone 9"
                     />
             </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/drop_down_layout"
+                android:clickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/drop_down_ic"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/baseline_arrow_drop_down_24"
+                    />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/product_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                tools:text="Some description"
+                />
+
 
         </LinearLayout>
 

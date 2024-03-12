@@ -14,6 +14,7 @@ class ProductLentaEpoxyController(
         cData = data
 
         if(data.isNullOrEmpty()){
+            // создание Shimmer эффекта
             repeat(4){
                 ProductLentaEpoxyModel(
                     lentaProduct = null,

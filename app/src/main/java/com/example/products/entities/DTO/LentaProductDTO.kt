@@ -1,5 +1,13 @@
 package com.example.products.entities.DTO
 
+/**
+ *
+ * Сущность товара для
+ * отображения в ленте
+ *
+ * @date 7.03.2024
+ * @author ArseniyBogdan
+ */
 data class LentaProductDTO(
     val id: Int,
     val title: String,

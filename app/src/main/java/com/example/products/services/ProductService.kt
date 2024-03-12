@@ -16,6 +16,16 @@ class ProductService {
             requestUrl = "https://dummyjson.com/products?skip=$skipCountItems&limit=$limitCountItems"
         )
         return mapper.readValue(response, PageOfProductsResponse::class.java)
+    }
 
+    fun getPageOfProductsByKey(
+        searchKey: String,
+        skipCountItems: Int,
+        limitCountItems: Int
+    ): PageOfProductsResponse{
+        val response = HttpService.sendGetRequest(
+            requestUrl = "https://dummyjson.com/products/search?q=$searchKey&skip=$skipCountItems&limit=$limitCountItems"
+        )
+        return mapper.readValue(response, PageOfProductsResponse::class.java)
     }
 }

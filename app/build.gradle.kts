@@ -67,7 +67,8 @@ dependencies {
     //ViewBinding
     implementation("com.github.yogacp:android-viewbinding:1.0.4")
 
-    // Navigation library
+    // Navigation library, изначально должна была быть использована для навигации
+    // на фрагмент товара, однако он не был реализован
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
 
