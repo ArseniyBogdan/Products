@@ -5,14 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.products.entities.DTO.LentaPageOfProductsDTO
-import com.example.products.entities.DTO.LentaProductDTO
-import com.example.products.entities.response.PageOfProductsResponse
+import com.example.products.entities.dto.LentaPageOfProductsDTO
+import com.example.products.entities.dto.LentaProductDTO
 import com.example.products.usecases.GetPageOfProductsByKeyUseCase
 import com.example.products.usecases.GetPageOfProductsUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.launch
 
@@ -41,6 +38,7 @@ class ProductViewModel: ViewModel() {
         get() = _isFounded
 
     init {
+        // начальная загрузка первой страницы товаров
         viewModelScope.launch(Dispatchers.IO) {
             val pageOfProducts = downloadNewPage(
                 pageSelected = 0
@@ -52,6 +50,8 @@ class ProductViewModel: ViewModel() {
 
     fun shouldPaginate() = !isLastPage && !isLoading
 
+    // метод для обновления ленты товаров
+    // (нужен в случае появления интернета на устройстве)
     fun refresh(searchKey: String){
         Log.d("searchKey", searchKey)
         isLoading = true
@@ -71,6 +71,8 @@ class ProductViewModel: ViewModel() {
         }
     }
 
+    // метод для загрузки первой страницы товаров
+    // при изменении поискового запроса пользователем
     fun search(searchKey: String){
         Log.d("search", searchKey)
         isLoading = true
@@ -88,6 +90,7 @@ class ProductViewModel: ViewModel() {
         }
     }
 
+    // загрузка страницы товаров в зависимости от наличия текста в searchKey
     private fun downloadNewPage(
         searchKey: String = "",
         pageSelected: Int,
@@ -113,7 +116,8 @@ class ProductViewModel: ViewModel() {
         }
     }
 
-    private suspend fun addNewPage(productPage: LentaPageOfProductsDTO?){
+    // добавление страницы товаров к уже загруженным
+    private fun addNewPage(productPage: LentaPageOfProductsDTO?){
         if((productPage == null || productPage.products.isEmpty()) && currentPage == 0){
             _isFounded.postValue(false)
         }
@@ -126,7 +130,8 @@ class ProductViewModel: ViewModel() {
         }
     }
 
-    private suspend fun setNewPage(productPage: LentaPageOfProductsDTO?){
+    // установка страницы товара в качестве нулевой
+    private fun setNewPage(productPage: LentaPageOfProductsDTO?){
         if((productPage == null || productPage.products.isEmpty()) && currentPage == 0){
             _isFounded.postValue(false)
         }
@@ -137,6 +142,7 @@ class ProductViewModel: ViewModel() {
         }
     }
 
+    // метод для загрузки товаров при скроллинге
     fun download(searchKey: String){
         Log.d("download", searchKey)
         isLoading = true

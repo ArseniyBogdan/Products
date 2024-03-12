@@ -3,7 +3,6 @@ package com.example.products.presentation.epoxy
 import android.content.Context
 import android.transition.AutoTransition
 import android.transition.TransitionManager
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -11,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.products.R
 import com.example.products.databinding.ProductListItemBinding
-import com.example.products.entities.DTO.LentaProductDTO
+import com.example.products.entities.dto.LentaProductDTO
 import com.example.products.utils.ViewBindingKotlinModel
 import kotlin.math.roundToInt
 
@@ -42,7 +41,6 @@ class ProductLentaEpoxyModel(
             productDescription.text = product.description
             productDescription.visibility = View.GONE
             setDownIcon()
-
             setupExpandClickListener()
 
             Glide.with(context).load(lentaProduct.thumbnail)

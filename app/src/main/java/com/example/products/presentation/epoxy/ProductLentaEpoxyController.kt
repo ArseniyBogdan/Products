@@ -2,7 +2,7 @@ package com.example.products.presentation.epoxy
 
 import android.content.Context
 import com.airbnb.epoxy.TypedEpoxyController
-import com.example.products.entities.DTO.LentaProductDTO
+import com.example.products.entities.dto.LentaProductDTO
 import java.util.UUID
 
 class ProductLentaEpoxyController(
@@ -14,6 +14,7 @@ class ProductLentaEpoxyController(
         cData = data
 
         if(data.isNullOrEmpty()){
+            // создание Shimmer эффекта
             repeat(4){
                 ProductLentaEpoxyModel(
                     lentaProduct = null,
